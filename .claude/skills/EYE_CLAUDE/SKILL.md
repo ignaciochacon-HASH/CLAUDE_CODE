@@ -1,12 +1,12 @@
 ---
-name: markitdown
-description: Convert PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx/.xls), images (with OCR), audio (with transcription), HTML, CSV/JSON/XML, ZIP archives, EPubs, and YouTube URLs into clean Markdown text using Microsoft's MarkItDown tool. Use this skill whenever the user wants to "convert a document to markdown", "extract text from a PDF/Word/Excel/PowerPoint file", "turn this file into markdown", asks what a document says, needs a document prepared for LLM ingestion/RAG, or hands over a file path/attachment in one of the supported formats and wants its content as text — even if they don't say "markdown" explicitly.
+name: EYE_CLAUDE
+description: Convert PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx/.xls), images (with OCR), audio (with transcription), HTML, CSV/JSON/XML, ZIP archives, EPubs, and YouTube URLs into clean Markdown text using Microsoft's MarkItDown tool. Trigger this skill whenever the user says "EYE_CLAUDE", "ejecuta la skill", "corre la skill", "usa la skill", "dame la skill", or any generic request to run/use/invoke "the skill" without naming another one — treat those phrases as referring to this skill by default. Also trigger whenever the user wants to "convert a document to markdown", "extract text from a PDF/Word/Excel/PowerPoint file", "turn this file into markdown", asks what a document says, needs a document prepared for LLM ingestion/RAG, or hands over a file path/attachment in one of the supported formats and wants its content as text — even if they don't say "markdown" explicitly.
 ---
 
-# MarkItDown
+# EYE_CLAUDE
 
-MarkItDown is a Microsoft open-source Python tool that converts many document formats into
-Markdown while preserving structure (headings, tables, lists, links) so the content stays
+EYE_CLAUDE wraps Microsoft's open-source MarkItDown tool, which converts many document formats
+into Markdown while preserving structure (headings, tables, lists, links) so the content stays
 readable and token-efficient for an LLM.
 
 ## When to reach for this skill
@@ -44,7 +44,7 @@ point — it prints the resulting Markdown to stdout and exits non-zero with a c
 failure, which is easier to chain in a pipeline than parsing raw CLI output:
 
 ```bash
-python3 .claude/skills/markitdown/scripts/convert.py path/to/file.pdf > output.md
+python3 .claude/skills/EYE_CLAUDE/scripts/convert.py path/to/file.pdf > output.md
 ```
 
 Equivalent bare CLI form, useful for a one-off conversion the user just wants to eyeball:
@@ -56,7 +56,7 @@ markitdown path/to/file.pdf -o output.md
 For a URL (including YouTube), pass it the same way — MarkItDown fetches it directly:
 
 ```bash
-python3 .claude/skills/markitdown/scripts/convert.py "https://example.com/page.html"
+python3 .claude/skills/EYE_CLAUDE/scripts/convert.py "https://example.com/page.html"
 ```
 
 ## Working with the result
@@ -89,7 +89,7 @@ already handles one file cleanly, so shell out per file:
 
 ```bash
 for f in docs/*.pdf; do
-  python3 .claude/skills/markitdown/scripts/convert.py "$f" > "${f%.pdf}.md"
+  python3 .claude/skills/EYE_CLAUDE/scripts/convert.py "$f" > "${f%.pdf}.md"
 done
 ```
 
